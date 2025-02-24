@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { ChevronLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { ChevronLeft } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 
 export function BackButton(className: { className?: string }) {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <Button
@@ -18,5 +18,5 @@ export function BackButton(className: { className?: string }) {
       <ChevronLeft className="h-4 w-4" />
       Back
     </Button>
-  );
+  )
 }

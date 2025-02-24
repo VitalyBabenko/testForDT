@@ -1,14 +1,14 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Link from "next/link";
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import Link from 'next/link'
 
 export interface Recipe {
-  id: string;
-  title: string;
-  image: string;
-  cookingTime: number;
-  cuisine: string;
+  id: string
+  title: string
+  image: string
+  cookingTime: number
+  cuisine: string
 }
 
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
@@ -17,7 +17,7 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
       <Card className="group overflow-hidden transition-colors hover:bg-muted/50">
         <CardHeader className="p-0 relative aspect-video overflow-hidden rounded-t-lg">
           <Image
-            src={recipe.image || "/placeholder.svg"}
+            src={recipe.image || '/placeholder.svg'}
             alt={recipe.title}
             width={312}
             height={231}
@@ -29,5 +29,5 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
         </CardContent>
       </Card>
     </Link>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { type Recipe, RecipeCard } from "@/components/recipe-card";
-import { RecipeCardSkeleton } from "./recipe-card-skeleton";
+import { type Recipe, RecipeCard } from '@/components/recipe-card'
+import { RecipeCardSkeleton } from './recipe-card-skeleton'
 
 interface RecipeGridProps {
-  recipes: Recipe[];
-  loading?: boolean;
+  recipes: Recipe[]
+  loading?: boolean
 }
 
 export function RecipeGrid({ recipes, loading }: RecipeGridProps) {
@@ -14,17 +14,15 @@ export function RecipeGrid({ recipes, loading }: RecipeGridProps) {
           <RecipeCardSkeleton key={i} />
         ))}
       </div>
-    );
+    )
   }
 
   if (recipes.length === 0) {
     return (
       <div className="text-center h-screen flex flex-col justify-center">
-        <p className="text-muted-foreground">
-          No recipes found. Try adjusting your search.
-        </p>
+        <p className="text-muted-foreground">No recipes found. Try adjusting your search.</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -33,5 +31,5 @@ export function RecipeGrid({ recipes, loading }: RecipeGridProps) {
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
     </div>
-  );
+  )
 }

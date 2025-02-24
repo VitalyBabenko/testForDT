@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
-import Link from "next/link";
-import { AlertOctagon, Home, RotateCcw } from "lucide-react";
+import { useEffect } from 'react'
+import Link from 'next/link'
+import { AlertOctagon, Home, RotateCcw } from 'lucide-react'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 
 export default function GlobalError({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
-    console.error(error);
-  }, [error]);
+    console.error(error)
+  }, [error])
 
   return (
     <html>
@@ -24,9 +24,7 @@ export default function GlobalError({
           <div className="container flex flex-col items-center justify-center gap-6 text-center">
             <div className="space-y-2">
               <AlertOctagon className="mx-auto h-12 w-12 text-destructive" />
-              <h1 className="text-4xl font-bold tracking-tight">
-                Something went wrong!
-              </h1>
+              <h1 className="text-4xl font-bold tracking-tight">Something went wrong!</h1>
               <p className="text-muted-foreground">
                 Probably ran out of daytime quota, try replacing the API key
               </p>
@@ -47,5 +45,5 @@ export default function GlobalError({
         </main>
       </body>
     </html>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { RecipeGrid } from "@/components/recipe-grid";
+import { RecipeGrid } from '@/components/recipe-grid'
 
 export default function Loading() {
   return (
@@ -6,5 +6,5 @@ export default function Loading() {
       <h1 className="text-2xl font-bold mb-4">Loading</h1>
       <RecipeGrid recipes={[]} loading={true} />
     </div>
-  );
+  )
 }

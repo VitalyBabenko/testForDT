@@ -1,17 +1,14 @@
-import { BackButton } from "@/components/back-button";
-import { findRecipes } from "./actions";
-import { RecipeGrid } from "@/components/recipe-grid";
+import { BackButton } from '@/components/back-button'
+import { findRecipes } from './actions'
+import { RecipeGrid } from '@/components/recipe-grid'
 
-type RecipePageProps = {
-  searchParams: { [key: string]: string | undefined };
-};
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
-export const revalidate = 60;
+export const revalidate = 60
 
-export default async function RecipesPage({ searchParams }: RecipePageProps) {
-  const recipes = await findRecipes(searchParams);
-
-  console.log(recipes);
+export default async function RecipesPage(props: { searchParams: SearchParams }) {
+  const searchParams = await props.searchParams
+  const recipes = await findRecipes(searchParams)
 
   return (
     <div className="p-4 max-w-5xl mx-auto relative">
@@ -19,5 +16,5 @@ export default async function RecipesPage({ searchParams }: RecipePageProps) {
       <h1 className="text-2xl font-bold mt-4 mb-12">Recipe Page</h1>
       <RecipeGrid recipes={recipes} />
     </div>
-  );
+  )
 }

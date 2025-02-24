@@ -1,41 +1,66 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/select'
+import { useRouter } from 'next/navigation'
 
-import { useState } from "react";
+import { useMemo, useState } from 'react'
 
 const cuisines = [
-  { value: "italian", label: "Italian" },
-  { value: "mexican", label: "Mexican" },
-  { value: "chinese", label: "Chinese" },
-  { value: "indian", label: "Indian" },
-  { value: "japanese", label: "Japanese" },
-  { value: "thai", label: "Thai" },
-] as const;
+  'African',
+  'Asian',
+  'American',
+  'British',
+  'Cajun',
+  'Caribbean',
+  'Chinese',
+  'Eastern European',
+  'European',
+  'French',
+  'German',
+  'Greek',
+  'Indian',
+  'Irish',
+  'Italian',
+  'Japanese',
+  'Jewish',
+  'Korean',
+  'Latin American',
+  'Mediterranean',
+  'Mexican',
+  'Middle Eastern',
+  'Nordic',
+  'Southern',
+  'Spanish',
+  'Thai',
+  'Vietnamese',
+] as const
 
 export default function RecipeForm() {
-  const router = useRouter();
-  const [query, setQuery] = useState("");
-  const [cuisine, setCuisine] = useState("");
-  const [maxTime, setMaxTime] = useState(60);
+  const router = useRouter()
+  const [query, setQuery] = useState('')
+  const [cuisine, setCuisine] = useState('')
+  const [maxTime, setMaxTime] = useState(60)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const queryParams = new URLSearchParams();
-    if (query) queryParams.set("query", query);
-    if (cuisine) queryParams.set("cuisine", cuisine);
-    if (maxTime) queryParams.set("maxTime", String(maxTime));
-    router.push(`/recipes?${queryParams.toString()}`);
-  };
+    event.preventDefault()
+    const queryParams = new URLSearchParams()
+    if (query) queryParams.set('query', query)
+    if (cuisine) queryParams.set('cuisine', cuisine)
+    if (maxTime) queryParams.set('maxTime', String(maxTime))
+    router.push(`/recipes?${queryParams.toString()}`)
+  }
+
+  const isDisabled = useMemo(() => {
+    return query === '' && cuisine === '' && maxTime === 60
+  }, [query, cuisine, maxTime])
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6  max-w-md mx-auto">
@@ -52,18 +77,15 @@ export default function RecipeForm() {
       <div className="space-y-2">
         <label>Cuisine Type</label>
 
-        <Select
-          onValueChange={(value) => setCuisine(value)}
-          defaultValue={cuisine}
-        >
+        <Select onValueChange={(value) => setCuisine(value)} defaultValue={cuisine}>
           <SelectTrigger>
             <SelectValue placeholder="Select a cuisine" />
           </SelectTrigger>
 
           <SelectContent>
             {cuisines.map((cuisine) => (
-              <SelectItem key={cuisine.value} value={cuisine.value}>
-                {cuisine.label}
+              <SelectItem key={cuisine} value={cuisine}>
+                {cuisine}
               </SelectItem>
             ))}
           </SelectContent>
@@ -83,9 +105,9 @@ export default function RecipeForm() {
         />
       </div>
 
-      <Button type="submit" className="w-full">
+      <Button disabled={isDisabled} type="submit" className="w-full">
         Next
       </Button>
     </form>
-  );
+  )
 }

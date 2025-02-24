@@ -3,5 +3,5 @@ export default function Loading() {
     <div className="p-4 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Loading</h1>
     </div>
-  );
+  )
 }
